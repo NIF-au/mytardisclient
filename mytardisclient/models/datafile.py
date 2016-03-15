@@ -8,7 +8,14 @@ import json
 import os
 import cgi
 import hashlib
-import urllib2
+
+try:
+    # python3
+    import urllib.request
+except ImportError:
+    # python2
+    import urllib2
+
 import logging
 from datetime import datetime
 

@@ -5,7 +5,14 @@ See: https://github.com/mytardis/mytardis/blob/3.7/tardis/tardis_portal/api.py
 
 import json
 import os
-import urllib2
+
+try:
+    # python3
+    import urllib.request
+except ImportError:
+    # python2
+    import urllib2
+
 import logging
 
 import requests

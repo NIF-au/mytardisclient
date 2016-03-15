@@ -7,9 +7,19 @@ usually stored in ~/.config/mytardisclient/mytardisclient.cfg
 
 import os
 import json
-from urlparse import urlparse
 
-from ConfigParser import ConfigParser
+try:
+    # python3
+    from urllib.parse import urlparse
+except ImportError:
+    # python2
+    from urlparse import urlparse
+
+try:
+    from configparser import ConfigParser
+except ImportError:
+    from ConfigParser import ConfigParser
+
 from dogpile.cache import make_region  # pylint: disable=import-error
 
 DEFAULT_CONFIG_PATH = os.path.join(os.path.expanduser('~'), '.config',

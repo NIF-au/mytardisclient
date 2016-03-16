@@ -50,6 +50,18 @@ class ResultSet(object):
         return self
 
     def next(self):
+        
+        self.index += 1
+        if self.index >= len(self):
+            raise StopIteration
+        if 'include_metadata' in self.model.__init__.__code__.co_varnames:
+            return self.model(self.json['objects'][self.index],
+                              include_metadata=False)
+        else:
+            return self.model(self.json['objects'][self.index])    
+
+
+    def __next__(self):
         """
         Return the next item from the :class:`ResultSet`. If there
         are no further items, raise the StopIteration exception.
